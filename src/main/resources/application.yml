@@ -2,7 +2,6 @@ server:
   port : 8180
 logging:
   level:
-    [no.sivertsensoftware]: DEBUG
     root: DEBUG
     web: DEBUG
     org:
@@ -10,8 +9,6 @@ logging:
       springframework:
         security: DEBUG
         web: DEBUG
-  profiles:
-        active: default
 info:
   application:
     name: Contact Registration

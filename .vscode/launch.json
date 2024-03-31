@@ -1,5 +1,16 @@
 {
     "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<contact-registration>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "no.sivertsensoftware.contactregistration.Application",
+            "projectName": "contact-registration",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
         {
             "type": "java",
             "name": "Spring Boot-Application<contact-registration>",
