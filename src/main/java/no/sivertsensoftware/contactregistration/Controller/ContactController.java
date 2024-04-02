@@ -5,11 +5,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+
+import dev.hilla.BrowserCallable;
 import no.sivertsensoftware.contactregistration.model.Contact;
 import no.sivertsensoftware.contactregistration.service.ContactService;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +23,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+@BrowserCallable
+@AnonymousAllowed
+@Configuration
 @RestController
 @RequestMapping("/api")
 public class ContactController {
@@ -27,6 +34,10 @@ public class ContactController {
 
     public ContactController(ContactService contactService) {
         this.contactService = contactService;
+    }
+
+    public boolean isAdmin() {
+        return true;
     }
 
     @GetMapping("/contact")

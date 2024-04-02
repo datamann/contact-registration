@@ -14,7 +14,9 @@
 	<name>contact-registration</name>
 	<description>Demo project for Policy-based Access Control. Created in Java Spring Boot with a Vaadin Hilla, Keycloak and Open Policy Agent</description>
 	<properties>
-		<java.version>22</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+    	<maven.compiler.target>17</maven.compiler.target>
+		<java.version>17</java.version>
 		<hilla.version>2.5.5</hilla.version>
 	</properties>
 	<dependencies>
@@ -129,7 +131,7 @@
 									<goal>build-frontend</goal>
 								</goals>
 								<configuration>
-								<productionMode>true</productionMode>
+									<productionMode>true</productionMode>
 								</configuration>
 							</execution>
 						</executions>
