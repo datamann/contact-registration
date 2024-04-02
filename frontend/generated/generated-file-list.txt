@@ -1,11 +1,11 @@
-HelloEndpoint.ts
+ContactController.ts
 ContactService.ts
+no/sivertsensoftware/contactregistration/model/Contact.ts
 dev/hilla/crud/filter/Filter.ts
 dev/hilla/crud/filter/FilterUnion.ts
 dev/hilla/crud/filter/OrFilter.ts
 dev/hilla/crud/filter/AndFilter.ts
 dev/hilla/crud/filter/PropertyStringFilter.ts
-no/sivertsensoftware/contactregistration/model/Contact.ts
 dev/hilla/mappedtypes/Pageable.ts
 dev/hilla/crud/filter/PropertyStringFilter/Matcher.ts
 dev/hilla/mappedtypes/Sort.ts
@@ -14,11 +14,11 @@ org/springframework/data/domain/Sort/Direction.ts
 org/springframework/data/domain/Sort/NullHandling.ts
 connect-client.default.ts
 endpoints.ts
+no/sivertsensoftware/contactregistration/model/ContactModel.ts
 dev/hilla/crud/filter/FilterModel.ts
 dev/hilla/crud/filter/OrFilterModel.ts
 dev/hilla/crud/filter/AndFilterModel.ts
 dev/hilla/crud/filter/PropertyStringFilterModel.ts
-no/sivertsensoftware/contactregistration/model/ContactModel.ts
 dev/hilla/mappedtypes/PageableModel.ts
 dev/hilla/crud/filter/PropertyStringFilter/MatcherModel.ts
 dev/hilla/mappedtypes/SortModel.ts
