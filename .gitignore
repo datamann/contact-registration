@@ -103,3 +103,4 @@ replay_pid*
 # Application
 pgadmin/*
 postgresql/*
+node_modules/*

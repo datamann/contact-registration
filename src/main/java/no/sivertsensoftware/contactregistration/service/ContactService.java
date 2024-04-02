@@ -4,11 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.vaadin.flow.server.auth.AnonymousAllowed;
+
+import dev.hilla.BrowserCallable;
+import dev.hilla.crud.ListRepositoryService;
 import no.sivertsensoftware.contactregistration.repository.ContactRepository;
 import no.sivertsensoftware.contactregistration.model.Contact;
 
+@BrowserCallable
+@AnonymousAllowed
 @Service
-public class ContactService {
+public class ContactService extends ListRepositoryService<Contact, Long, ContactRepository>{
 
     private final ContactRepository contactRepository;
 

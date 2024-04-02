@@ -15,6 +15,7 @@
 	<description>Demo project for Policy-based Access Control. Created in Java Spring Boot with a Vaadin Hilla, Keycloak and Open Policy Agent</description>
 	<properties>
 		<java.version>22</java.version>
+		<hilla.version>2.5.5</hilla.version>
 	</properties>
 	<dependencies>
 	
@@ -58,10 +59,45 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>dev.hilla</groupId>
+			<artifactId>hilla-react-spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>checker-qual</artifactId>
+					<groupId>org.checkerframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>dev.hilla</groupId>
+				<artifactId>hilla-bom</artifactId>
+				<version>${hilla.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>dev.hilla</groupId>
+				<artifactId>hilla-maven-plugin</artifactId>
+				<version>${hilla.version}</version>
+				<executions>
+					<execution>
+						<id>frontend</id>
+						<goals>
+							<goal>prepare-frontend</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -76,5 +112,30 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<profiles>
+		<profile>
+			<id>production</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>dev.hilla</groupId>
+						<artifactId>hilla-maven-plugin</artifactId>
+						<version>${hilla.version}</version>
+						<executions>
+							<execution>
+								<id>frontend</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>build-frontend</goal>
+								</goals>
+								<configuration>
+								<productionMode>true</productionMode>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
