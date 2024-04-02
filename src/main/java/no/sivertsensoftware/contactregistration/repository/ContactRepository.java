@@ -3,6 +3,7 @@ package no.sivertsensoftware.contactregistration.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import no.sivertsensoftware.contactregistration.model.Contact;
 
 
-public interface ContactRepository extends JpaRepository<Contact, Long> {
+public interface ContactRepository extends JpaRepository<Contact, Long>, JpaSpecificationExecutor<Contact> {
     List<Contact> findByFirstname(String firstname);
     List<Contact> findByLastname(String lastname);
     List<Contact> findByEmail(String email);
