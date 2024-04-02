@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    hostname: db
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB:  
+    volumes:
+        - ./postgresql:/var/lib/postgresql/data
+    networks:
+      - contactnetwork
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    hostname: pgadmin
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - 8081:8081/tcp
+    expose:
+      - 8081
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 8081
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+      - ./docker_pgadmin_servers.json:/pgadmin4/servers.json
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'db:5432:*:postgres:password' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+    networks:
+      - contactnetwork
+
+networks:
+  contactnetwork:
+    driver: bridge

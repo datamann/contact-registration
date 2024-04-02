@@ -1,14 +1,37 @@
 server:
-  port : 8180
+  port : 8082
 logging:
   level:
-    root: DEBUG
+    root: INFO
     web: DEBUG
     org:
       hibernate: DEBUG
       springframework:
         security: DEBUG
         web: DEBUG
+        data: DEBUG
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG
+spring:
+  application:
+    name: contact-registration
+  datasource:
+          driver-class-name: org.postgresql.Driver
+          username: postgres
+          password: password
+          name: contact
+          url: jdbc:postgresql://db:5432/contact?createDatabaseIfNotExist=true
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      format_sql: true
+      dialect: org.hibernate.dialect.PostgreSQL81Dialect
+  sql:
+    init:
+      mode: always # you won't do this in prod, I'm just doing this for demo purposes
 info:
   application:
     name: Contact Registration

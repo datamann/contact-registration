@@ -99,3 +99,7 @@ replay_pid*
 
 # MACOS
 .DS_Store
+
+# Application
+pgadmin/*
+postgresql/*
