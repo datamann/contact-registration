@@ -18,13 +18,13 @@ export default function MainView() {
   const [isadmin, setIsAdmin] = useState<boolean>();
 
   useEffect(() => {
-    const getAllUsers = async () => {
-      const result: any = await ContactController.findAll();
-      setItems(result);
-    };
-    getAllUsers();
+    // const getAllUsers = async () => {
+    //   const result: any = await ContactController.findAll();
+    //  setItems(result);
+    //};
+    //getAllUsers();
     isAdmin();
-  }, [setItems]);
+  }, []);
 
   async function isAdmin() {
     setIsAdmin(await ContactController.isAdmin().catch(() => false));
