@@ -11,11 +11,13 @@ import { ContactService } from "Frontend/generated/endpoints";
 import ContactModel from "Frontend/generated/no/sivertsensoftware/contactregistration/model/ContactModel";
 import Contact from "../generated/no/sivertsensoftware/contactregistration/model/Contact";
 import { ContactController } from "Frontend/generated/endpoints";
+import AddContact from "../components/AddContact";
 
 
 export default function MainView() {
   const [items, setItems] = useState<Contact[]>();
   const [isadmin, setIsAdmin] = useState<boolean>();
+  const [buttonAddContact, setButtonAddContact] = useState(false);
 
   useEffect(() => {
     // const getAllUsers = async () => {
@@ -75,15 +77,18 @@ export default function MainView() {
 
   return (
     <>
-    <form className="flex flex-col gap-y-2">
-      <TextField label="First name" {...field(model.firstname)}
+     <AddContact trigger={buttonAddContact} setTrigger={setButtonAddContact}>
+     <form className="flex flex-col gap-y-2">
+      <div>
+
+     <TextField label="First name" {...field(model.firstname)}
         name="firstname"
         placeholder="First name"
         autocomplete="given-name"
         disabled={!isadmin}>
         <Tooltip slot="tooltip" text="Enter first name!" />
       </TextField>
-      
+
       <TextField label="Last name" {...field(model.lastname)}
         name="lastname"
         placeholder="Last name"
@@ -91,14 +96,7 @@ export default function MainView() {
         disabled={!isadmin}>
         <Tooltip slot="tooltip" text="Enter last name!" />
       </TextField>
-
-      <TextField label="Company Name" {...field(model.companyname)}
-        name="companyname"
-        placeholder="Company Name"
-        autocomplete="company-name"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter company name!" />
-      </TextField>
+      <br />
 
       <TextField label="Address" {...field(model.address)}
         name="address"
@@ -108,6 +106,14 @@ export default function MainView() {
         <Tooltip slot="tooltip" text="Enter address!" />
       </TextField>
 
+      <TextField label="Zip code" {...field(model.zip)}
+        name="zip"
+        placeholder="Zip code"
+        autocomplete="zip"
+        disabled={!isadmin}>
+        <Tooltip slot="tooltip" text="Enter zip code!" />
+      </TextField>
+
       <TextField label="City" {...field(model.city)}
         name="city"
         placeholder="City"
@@ -115,6 +121,7 @@ export default function MainView() {
         disabled={!isadmin}>
         <Tooltip slot="tooltip" text="Enter city!" />
       </TextField>
+      <br />
 
       <TextField label="County" {...field(model.county)}
         name="county"
@@ -131,14 +138,7 @@ export default function MainView() {
         disabled={!isadmin}>
         <Tooltip slot="tooltip" text="Enter state!" />
       </TextField>
-
-      <TextField label="Zip code" {...field(model.zip)}
-        name="zip"
-        placeholder="Zip code"
-        autocomplete="zip"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter zip code!" />
-      </TextField>
+      <br />
 
       <TextField label="Primary Phonenumber" {...field(model.phonenumber)}
         name="phonenumber"
@@ -155,6 +155,7 @@ export default function MainView() {
         disabled={!isadmin}>
         <Tooltip slot="tooltip" text="Enter your second phonenumber!" />
       </TextField>
+      <br />
 
       <EmailField className="gap-s" {...field(model.email)}
         label="E-Mail"
@@ -165,14 +166,25 @@ export default function MainView() {
         <Tooltip slot="tooltip" text="Enter a valid email address!" />
       </EmailField>
 
-      <Button disabled={!isadmin} theme="primary" onClick={submit}>
+      <TextField label="Company Name" {...field(model.companyname)}
+        name="companyname"
+        placeholder="Company Name"
+        autocomplete="company-name"
+        disabled={!isadmin}>
+        <Tooltip slot="tooltip" text="Enter company name!" />
+      </TextField>
+
+      <Button id="btndel" disabled={!isadmin} theme="primary" onClick={submit}>
       <Tooltip slot="tooltip" text="Click, too add contact!" />
         Submit
       </Button>
 
-    <div className="p-m h-full box-border">
-      <AutoGrid items={items}
-        service={ContactService} 
+      </div>
+    </form>
+    </AddContact>
+    <div className="p-m h-full box-border content-center">
+      <AutoGrid id="autogrid" items={items}
+        service={ContactService}
         model={ContactModel} className="h-full"
         customColumns={[
           <GridColumn header="Actions" path="actions" autoWidth className="background" 
@@ -180,8 +192,11 @@ export default function MainView() {
           </GridColumn>,
         ]}
         />
+     <Button id="btnAddContact" disabled={!isadmin} theme="primary" onClick={() => setButtonAddContact(true)}>
+      <Tooltip slot="tooltip" text="Add contact!"/>
+        Add Contact
+      </Button>
     </div>
-    </form>
     </>
   );
 }
