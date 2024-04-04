@@ -4,7 +4,7 @@ import { EmailField } from "@hilla/react-components/EmailField.js";
 import { Tooltip } from "@hilla/react-components/Tooltip.js";
 import { Notification } from "@hilla/react-components/Notification.js";
 import { useForm } from '@hilla/react-form';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AutoGrid } from "@hilla/react-crud";
 import { GridColumn, GridColumnElement } from "@hilla/react-components/GridColumn";
 import { ContactService } from "Frontend/generated/endpoints";
@@ -20,11 +20,6 @@ export default function MainView() {
   const [buttonAddContact, setButtonAddContact] = useState(false);
 
   useEffect(() => {
-    // const getAllUsers = async () => {
-    //   const result: any = await ContactController.findAll();
-    //  setItems(result);
-    //};
-    //getAllUsers();
     isAdmin();
   }, []);
 
@@ -37,10 +32,11 @@ export default function MainView() {
   }
 
   function contactToCreate(contact: Contact) {
-    const contactCreated = createContact(contact); 
+    const contactCreated = createContact(contact);
 
     function handleReplyCreateContact(){
-      setItems([...items!,contact]);
+      // TODO: Remove or repurpose!
+      //setItems([...items!, contact]);
     }
 
     function contactNotCreated() {
