@@ -14,7 +14,7 @@ import no.sivertsensoftware.contactregistration.model.Contact;
 @BrowserCallable
 @AnonymousAllowed
 @Service
-public class ContactService extends ListRepositoryService<Contact, Long, ContactRepository>{
+public class ContactService extends ListRepositoryService<Contact, Long, ContactRepository> {
 
     private final ContactRepository contactRepository;
 

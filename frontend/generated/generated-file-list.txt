@@ -1,4 +1,5 @@
 ContactController.ts
+ContactFormService.ts
 ContactService.ts
 no/sivertsensoftware/contactregistration/model/Contact.ts
 dev/hilla/crud/filter/Filter.ts
