@@ -5,7 +5,7 @@ import { Tooltip } from "@hilla/react-components/Tooltip.js";
 import { Notification } from "@hilla/react-components/Notification.js";
 import { useForm } from '@hilla/react-form';
 import React, { useEffect, useState } from "react";
-import { AutoGrid } from "@hilla/react-crud";
+import { AutoGrid, AutoGridRef } from "@hilla/react-crud";
 import { GridColumn, GridColumnElement } from "@hilla/react-components/GridColumn";
 import { ContactService } from "Frontend/generated/endpoints";
 import ContactModel from "Frontend/generated/no/sivertsensoftware/contactregistration/model/ContactModel";
@@ -18,6 +18,7 @@ export default function MainView() {
   const [items, setItems] = useState<Contact[]>();
   const [isadmin, setIsAdmin] = useState<boolean>();
   const [buttonAddContact, setButtonAddContact] = useState(false);
+  const autoGridRef = React.useRef<AutoGridRef>(null);
 
   useEffect(() => {
     isAdmin();
@@ -55,13 +56,12 @@ export default function MainView() {
     await ContactController.deleteById(id);
   }
 
-  function deleteSelectedContact(id: any, contact: ContactModel) {
+  function deleteSelectedContact(id: number, contact: ContactModel) {
 
     const contactToDelete = deleteContact(id);
 
     function handleReplyDeleted() {
-      const update = items!.filter((contact) => id !== contact.id);
-      setItems(update);
+      autoGridRef.current?.refresh();
     }
 
     function handleReply(){
@@ -179,8 +179,9 @@ export default function MainView() {
     </form>
     </AddContact>
     <div className="p-m h-full box-border content-center">
-      <AutoGrid id="autogrid" items={items}
+      <AutoGrid items={items}
         service={ContactService}
+        ref={autoGridRef}
         model={ContactModel} className="h-full"
         customColumns={[
           <GridColumn header="Actions" path="actions" autoWidth className="background" 
