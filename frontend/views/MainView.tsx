@@ -36,8 +36,7 @@ export default function MainView() {
     const contactCreated = createContact(contact);
 
     function handleReplyCreateContact(){
-      // TODO: Remove or repurpose!
-      //setItems([...items!, contact]);
+      autoGridRef.current?.refresh();
     }
 
     function contactNotCreated() {
