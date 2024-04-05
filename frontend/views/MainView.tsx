@@ -1,13 +1,14 @@
 import { Button } from "@hilla/react-components/Button.js";
-import { TextField } from "@hilla/react-components/TextField.js";
-import { EmailField } from "@hilla/react-components/EmailField.js";
+//import { TextField } from "@hilla/react-components/TextField.js";
+//import { EmailField } from "@hilla/react-components/EmailField.js";
 import { Tooltip } from "@hilla/react-components/Tooltip.js";
 import { Notification } from "@hilla/react-components/Notification.js";
-import { useForm } from '@hilla/react-form';
+//import { useForm } from '@hilla/react-form';
 import React, { useEffect, useState } from "react";
-import { AutoGrid, AutoGridRef } from "@hilla/react-crud";
+import { AutoForm, AutoGrid, AutoGridRef } from "@hilla/react-crud";
 import { GridColumn, GridColumnElement } from "@hilla/react-components/GridColumn";
 import { ContactService } from "Frontend/generated/endpoints";
+import { ContactFormService } from "Frontend/generated/endpoints";
 import ContactModel from "Frontend/generated/no/sivertsensoftware/contactregistration/model/ContactModel";
 import Contact from "../generated/no/sivertsensoftware/contactregistration/model/Contact";
 import { ContactController } from "Frontend/generated/endpoints";
@@ -28,28 +29,33 @@ export default function MainView() {
     setIsAdmin(await ContactController.isAdmin().catch(() => false));
   }
 
-  async function createContact(contact: Contact) {
-    await ContactController.createContact(contact);
-  }
+  // async function createContact(contact: Contact) {
+  //   await ContactController.createContact(contact);
+  // }
 
-  function contactToCreate(contact: Contact) {
-    const contactCreated = createContact(contact);
+  // function contactToCreate(contact: Contact) {
+  //   const contactCreated = createContact(contact);
 
-    function handleReplyCreateContact(){
-      autoGridRef.current?.refresh();
-    }
+  //   function handleReplyCreateContact(){
+  //     autoGridRef.current?.refresh();
+  //   }
 
-    function contactNotCreated() {
-      alert('Contact NOT created!');
-    }
-    contactCreated.then(handleReplyCreateContact,contactNotCreated);
+  //   function contactNotCreated() {
+  //     alert('Contact NOT created!');
+  //   }
+  //   contactCreated.then(handleReplyCreateContact,contactNotCreated);
+  // };
+
+  // const { model, field, read, submit } = useForm(ContactModel, {
+  //   onSubmit: async (contact: Contact) => {
+  //     contactToCreate(contact);
+  //   }
+  // });
+
+  const handleSubmitSuccess = ({ item }: { item: Contact }) => {
+    Notification.show('Form was submitted!');
+    autoGridRef.current?.refresh();
   };
-
-  const { model, field, read, submit } = useForm(ContactModel, {
-    onSubmit: async (contact: Contact) => {
-      contactToCreate(contact);
-    }
-  });
 
   async function deleteContact(id: number) {
     await ContactController.deleteById(id);
@@ -73,7 +79,8 @@ export default function MainView() {
   return (
     <>
      <AddContact trigger={buttonAddContact} setTrigger={setButtonAddContact}>
-     <form className="flex flex-col gap-y-2">
+        <AutoForm service={ContactFormService} model={ContactModel} onSubmitSuccess={handleSubmitSuccess} />
+     {/* <form className="flex flex-col gap-y-2">
       <div>
 
      <TextField label="First name" {...field(model.firstname)}
@@ -175,7 +182,7 @@ export default function MainView() {
       </Button>
 
       </div>
-    </form>
+    </form> */}
     </AddContact>
     <div className="p-m h-full box-border content-center">
       <AutoGrid items={items}
