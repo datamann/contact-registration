@@ -53,8 +53,8 @@ The Contact Registration feature has no practical use, this project is created t
     DELIMITER ','
     CSV HEADER;
 ```
-*
-*
+
+
 * Troubleshooting OPA
 * To query OPA:
 ```
