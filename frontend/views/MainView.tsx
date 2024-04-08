@@ -7,6 +7,7 @@ import { Notification } from "@hilla/react-components/Notification.js";
 import React, { useEffect, useState } from "react";
 import { AutoForm, AutoGrid, AutoGridRef } from "@hilla/react-crud";
 import { GridColumn, GridColumnElement } from "@hilla/react-components/GridColumn";
+import { HorizontalLayout } from "@hilla/react-components/HorizontalLayout";
 import { ContactService } from "Frontend/generated/endpoints";
 import { ContactFormService } from "Frontend/generated/endpoints";
 import ContactModel from "Frontend/generated/no/sivertsensoftware/contactregistration/model/ContactModel";
@@ -20,6 +21,7 @@ export default function MainView() {
   const [isadmin, setIsAdmin] = useState<boolean>();
   const [buttonAddContact, setButtonAddContact] = useState(false);
   const autoGridRef = React.useRef<AutoGridRef>(null);
+  const [editedItem, setEditedItem] = useState<Contact | null>(null);
 
   useEffect(() => {
     isAdmin();
@@ -57,6 +59,10 @@ export default function MainView() {
     autoGridRef.current?.refresh();
   };
 
+  const handleEdit = () => {
+    setEditedItem(editedItem);
+  };
+
   async function deleteContact(id: number) {
     await ContactController.deleteById(id);
   }
@@ -79,7 +85,12 @@ export default function MainView() {
   return (
     <>
      <AddContact trigger={buttonAddContact} setTrigger={setButtonAddContact}>
-        <AutoForm service={ContactFormService} model={ContactModel} onSubmitSuccess={handleSubmitSuccess} />
+      <AutoForm 
+          service={ContactFormService} 
+          model={ContactModel}
+          item={editedItem}
+          onSubmitSuccess={handleSubmitSuccess} 
+      />
      {/* <form className="flex flex-col gap-y-2">
       <div>
 
@@ -185,18 +196,34 @@ export default function MainView() {
     </form> */}
     </AddContact>
     <div className="p-m h-full box-border content-center">
-      <AutoGrid items={items}
+      <AutoGrid
         service={ContactService}
         ref={autoGridRef}
         model={ContactModel} className="h-full"
-        visibleColumns={['actions','firstname', 'lastname', 'companyname', 'address','city', 'county', 'state', 'zip', 'country', 'phonenumber', 'phonenumber2', 'email']}
+        visibleColumns={['actions','edit','firstname','lastname','email','phonenumber','phonenumber2','companyname','address','city','county','state','zip','country']}
         customColumns={[  
-          <GridColumn header="Actions" key="actions" path="actions" autoWidth className="background" property="actions"
+          <GridColumn header="Actions" key="actions" autoWidth className="background" property="actions"
             renderer={({ item: Contact }) => (<Button theme="primary" disabled={!isadmin} onClick={(item) => { deleteSelectedContact(Contact.id, Contact); }}>Delete</Button>)}>
+          </GridColumn>,
+
+          <GridColumn header="Edit" key="edit" autoWidth className="background" property="edit"
+            renderer={({ item: Contact }) => (
+              <Button theme="primary" 
+                disabled={!isadmin} 
+                onClick={(item) => {
+                  setEditedItem(Contact)
+                  setButtonAddContact(true)
+                }}>Edit
+              </Button>
+            )}>
           </GridColumn>,
         ]}
         />
-     <Button id="btnAddContact" disabled={!isadmin} theme="primary" onClick={() => setButtonAddContact(true)}>
+      <Button id="btnAddContact" disabled={!isadmin} theme="primary" onClick={() => {
+          setEditedItem(null)
+          setButtonAddContact(true)
+        }
+      }>
       <Tooltip slot="tooltip" text="Add contact!"/>
         Add Contact
       </Button>
