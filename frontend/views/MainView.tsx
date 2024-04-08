@@ -189,8 +189,9 @@ export default function MainView() {
         service={ContactService}
         ref={autoGridRef}
         model={ContactModel} className="h-full"
-        customColumns={[
-          <GridColumn header="Actions" path="actions" autoWidth className="background" 
+        visibleColumns={['actions','firstname', 'lastname', 'companyname', 'address','city', 'county', 'state', 'zip', 'country', 'phonenumber', 'phonenumber2', 'email']}
+        customColumns={[  
+          <GridColumn header="Actions" key="actions" path="actions" autoWidth className="background" property="actions"
             renderer={({ item: Contact }) => (<Button theme="primary" disabled={!isadmin} onClick={(item) => { deleteSelectedContact(Contact.id, Contact); }}>Delete</Button>)}>
           </GridColumn>,
         ]}
