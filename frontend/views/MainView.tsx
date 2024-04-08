@@ -1,9 +1,6 @@
 import { Button } from "@hilla/react-components/Button.js";
-//import { TextField } from "@hilla/react-components/TextField.js";
-//import { EmailField } from "@hilla/react-components/EmailField.js";
 import { Tooltip } from "@hilla/react-components/Tooltip.js";
 import { Notification } from "@hilla/react-components/Notification.js";
-//import { useForm } from '@hilla/react-form';
 import React, { useEffect, useState } from "react";
 import { AutoForm, AutoGrid, AutoGridRef } from "@hilla/react-crud";
 import { GridColumn, GridColumnElement } from "@hilla/react-components/GridColumn";
@@ -30,29 +27,6 @@ export default function MainView() {
   async function isAdmin() {
     setIsAdmin(await ContactController.isAdmin().catch(() => false));
   }
-
-  // async function createContact(contact: Contact) {
-  //   await ContactController.createContact(contact);
-  // }
-
-  // function contactToCreate(contact: Contact) {
-  //   const contactCreated = createContact(contact);
-
-  //   function handleReplyCreateContact(){
-  //     autoGridRef.current?.refresh();
-  //   }
-
-  //   function contactNotCreated() {
-  //     alert('Contact NOT created!');
-  //   }
-  //   contactCreated.then(handleReplyCreateContact,contactNotCreated);
-  // };
-
-  // const { model, field, read, submit } = useForm(ContactModel, {
-  //   onSubmit: async (contact: Contact) => {
-  //     contactToCreate(contact);
-  //   }
-  // });
 
   const handleSubmitSuccess = ({ item }: { item: Contact }) => {
     Notification.show('Form was submitted!');
@@ -91,109 +65,6 @@ export default function MainView() {
           item={editedItem}
           onSubmitSuccess={handleSubmitSuccess} 
       />
-     {/* <form className="flex flex-col gap-y-2">
-      <div>
-
-     <TextField label="First name" {...field(model.firstname)}
-        name="firstname"
-        placeholder="First name"
-        autocomplete="given-name"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter first name!" />
-      </TextField>
-
-      <TextField label="Last name" {...field(model.lastname)}
-        name="lastname"
-        placeholder="Last name"
-        autocomplete="family-name"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter last name!" />
-      </TextField>
-      <br />
-
-      <TextField label="Address" {...field(model.address)}
-        name="address"
-        placeholder="Address"
-        autocomplete="address"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter address!" />
-      </TextField>
-
-      <TextField label="Zip code" {...field(model.zip)}
-        name="zip"
-        placeholder="Zip code"
-        autocomplete="zip"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter zip code!" />
-      </TextField>
-
-      <TextField label="City" {...field(model.city)}
-        name="city"
-        placeholder="City"
-        autocomplete="city"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter city!" />
-      </TextField>
-      <br />
-
-      <TextField label="County" {...field(model.county)}
-        name="county"
-        placeholder="County"
-        autocomplete="county"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter county!" />
-      </TextField>
-
-      <TextField label="State" {...field(model.state)}
-        name="state"
-        placeholder="State"
-        autocomplete="state"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter state!" />
-      </TextField>
-      <br />
-
-      <TextField label="Primary Phonenumber" {...field(model.phonenumber)}
-        name="phonenumber"
-        placeholder="Primary Phonenumber"
-        autocomplete="phonenumber"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter your primary phonenumber!" />
-      </TextField>
-
-      <TextField label="Second Phonenumber" {...field(model.phonenumber2)}
-        name="phonenumber2"
-        placeholder="Second Phonenumber"
-        autocomplete="phonenumber2"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter your second phonenumber!" />
-      </TextField>
-      <br />
-
-      <EmailField className="gap-s" {...field(model.email)}
-        label="E-Mail"
-        name="email"
-        placeholder="E-Mail"
-        autocomplete="on"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter a valid email address!" />
-      </EmailField>
-
-      <TextField label="Company Name" {...field(model.companyname)}
-        name="companyname"
-        placeholder="Company Name"
-        autocomplete="company-name"
-        disabled={!isadmin}>
-        <Tooltip slot="tooltip" text="Enter company name!" />
-      </TextField>
-
-      <Button id="btndel" disabled={!isadmin} theme="primary" onClick={submit}>
-      <Tooltip slot="tooltip" text="Click, too add contact!" />
-        Submit
-      </Button>
-
-      </div>
-    </form> */}
     </AddContact>
     <div className="p-m h-full box-border content-center">
       <AutoGrid

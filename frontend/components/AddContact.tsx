@@ -7,15 +7,11 @@ function AddContact (props : any) {
   return (props.trigger) ? (
     <div className='popup'>
       <div className='popup-inner'>
-        {/* <button className='btn close-btn' onClick={() => {props.setTrigger(false)}}>Close</button> 
-        { props.children } */}
-
         <Button id="btnAddContact" theme="primary" onClick={() => {props.setTrigger(false)}}>
           <Tooltip slot="tooltip" text="Close form"/>
           Close form
         </Button>
         { props.children }
-
       </div>
     </div>
   ) : "";
