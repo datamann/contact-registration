@@ -41,7 +41,7 @@ The Contact Registration feature has no practical use, this project is created t
 ```
     docker ps
 ```
-* Replace "/<container id/>" with the container ID found above
+* Replace "container id" (remove the angle brackets!) with the container ID found above
 ```
     docker cp resource-files/100-contacts.csv <container id>:/home/contacts.csv
 ```
