@@ -37,7 +37,7 @@ The Contact Registration feature has no practical use, this project is created t
 ### TIPS
 * To add data to the database you can use the file "100-contacts.csv" found in the resource-files folder:
 * Copy file into container:
-* To get the database containers ID, run:
+* To get the database container id, run:
 ```
     docker ps
 ```
