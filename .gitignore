@@ -98,9 +98,12 @@ replay_pid*
 *.vsix
 
 # MACOS
-.DS_Store
+.DS_Store banished!
+.DS_Store? banished!
+**/.DS_Store banished!
 
 # Application
 pgadmin/*
 postgresql/*
 node_modules/*
+keycloak/*
