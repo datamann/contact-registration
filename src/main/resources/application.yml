@@ -1,18 +1,22 @@
 server:
   port : 8082
+  #contextPath: /api
+  servlet:
+    session:
+      timeout: 20
 logging:
   level:
     root: INFO
     web: DEBUG
     org:
-      hibernate: DEBUG
+      hibernate: INFO
       springframework:
-        security: DEBUG
+        security: TRACE
         web: DEBUG
-        data: DEBUG
+        data: INFO
         jdbc:
           core:
-            JdbcTemplate: DEBUG
+            JdbcTemplate: INFO
 spring:
   application:
     name: contact-registration

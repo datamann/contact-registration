@@ -12,7 +12,7 @@ The Contact Registration feature has no practical use, this project is created t
 * The front end is based on Vaadin Hilla/React.
 * Backend is based on Spring Boot.
 * Database is docker-based PostGresSQL. For database administration, PGAdmin4 is available.
-* For authentication, Docker-based Keycloak is used, and configured with a new realm, users and roles.
+* For authentication, Docker-based Keycloak is used, and configured with a new realm, users and roles. If you don't want to configure Keycloak from scratch, just kopy the keycloak folder from the resources-files directory to the root of this project.
 * For external authorization, a Docker-based Open Policy Agent (OPA) is used.
 * Docker needs to be installed.
 
