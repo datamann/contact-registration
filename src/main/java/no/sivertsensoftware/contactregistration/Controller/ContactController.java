@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import dev.hilla.BrowserCallable;
+import jakarta.annotation.security.RolesAllowed;
 import no.sivertsensoftware.contactregistration.model.Contact;
 import no.sivertsensoftware.contactregistration.service.ContactService;
 
@@ -36,6 +37,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
+    @RolesAllowed("ADMINS")
     public boolean isAdmin() {
         return true;
     }
@@ -72,7 +74,7 @@ public class ContactController {
         return saved;
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/contact/{id}")
     public void update(@RequestBody Contact contact, @PathVariable("id") Long id) {
         if (!contactService.existsById(id)) {
