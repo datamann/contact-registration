@@ -52,7 +52,6 @@ public class ContactService extends ListRepositoryService<Contact, Long, Contact
         return null;
     }
 
-    @SuppressWarnings("null")
     public Contact createContact(Contact contact){
         return contactRepository.save(contact);
     }
@@ -63,7 +62,6 @@ public class ContactService extends ListRepositoryService<Contact, Long, Contact
                                         contact.getPhonenumber2(), contact.getEmail());
     }
 
-    @SuppressWarnings("null")
     public boolean existsById(Long id) {
         return contactRepository.existsById(id);
     }
