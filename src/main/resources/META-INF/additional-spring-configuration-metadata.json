@@ -1,5 +1,42 @@
-{"properties": [{
-  "name": "server.contextPath",
-  "type": "java.lang.String",
-  "description": "A description for 'server.contextPath'"
-}]}
+{"properties": [
+  {
+    "name": "server.contextPath",
+    "type": "java.lang.String",
+    "description": "A description for 'server.contextPath'"
+  },
+  {
+    "name": "app.opa.authz.url",
+    "type": "java.lang.String",
+    "description": "A description for 'app.opa.authz.url'"
+  },
+  {
+    "name": "spring.jpa.hibernate.dialect",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.dialect'"
+  },
+  {
+    "name": "spring.jpa.hibernate.format_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.hibernate.format_sql'"
+  },
+  {
+    "name": "info.application.description",
+    "type": "java.lang.String",
+    "description": "A description for 'info.application.description'"
+  },
+  {
+    "name": "info.application.name",
+    "type": "java.lang.String",
+    "description": "A description for 'info.application.name'"
+  },
+  {
+    "name": "info.application.author",
+    "type": "java.lang.String",
+    "description": "A description for 'info.application.author'"
+  },
+  {
+    "name": "info.application.version",
+    "type": "java.lang.String",
+    "description": "A description for 'info.application.version'"
+  }
+]}

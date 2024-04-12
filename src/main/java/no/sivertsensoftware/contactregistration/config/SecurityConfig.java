@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +28,7 @@ import java.util.Set;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     public static final String ADMIN = "ADMINS";
@@ -34,6 +36,9 @@ public class SecurityConfig {
 
     @Autowired
 	private ClientRegistrationRepository clientRegistrationRepository;
+
+    @Autowired
+    private OPAAuthorizationManager opaAuthorizationManager;
 
     public SecurityConfig( ClientRegistrationRepository clientRegistrationRepository ) {
         this.clientRegistrationRepository = clientRegistrationRepository;
@@ -52,11 +57,11 @@ public class SecurityConfig {
             .cors(cors -> cors.disable())
 
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                .requestMatchers(mvc.pattern(HttpMethod.GET, "/**")).hasAnyRole(USER,ADMIN)
-                .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/**")).hasAnyRole(USER,ADMIN)
-                .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/**")).hasRole(ADMIN)
-                .requestMatchers(mvc.pattern(HttpMethod.PUT, "/api/**")).hasRole(ADMIN)
-                .requestMatchers(mvc.pattern(HttpMethod.DELETE, "/api/**")).hasRole(ADMIN)
+                .requestMatchers(mvc.pattern(HttpMethod.GET, "/**")).access(opaAuthorizationManager)
+                .requestMatchers(mvc.pattern(HttpMethod.GET, "/api/**")).access(opaAuthorizationManager)
+                .requestMatchers(mvc.pattern(HttpMethod.POST, "/api/**")).access(opaAuthorizationManager)
+                .requestMatchers(mvc.pattern(HttpMethod.PUT, "/api/**")).access(opaAuthorizationManager)
+                .requestMatchers(mvc.pattern(HttpMethod.DELETE, "/api/**")).access(opaAuthorizationManager)
                 .anyRequest()
                 .authenticated()
             )

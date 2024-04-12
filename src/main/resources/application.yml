@@ -4,6 +4,10 @@ server:
   servlet:
     session:
       timeout: 20
+app:
+  opa:
+    authz:
+      url: http://opa:8181/v1/data/
 logging:
   level:
     root: INFO

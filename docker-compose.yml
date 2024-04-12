@@ -58,6 +58,20 @@ services:
       - ./keycloak:/opt/keycloak
     networks:
       - contactnetwork
+  opa:
+    image: openpolicyagent/opa:edge-static-debug
+    container_name: openpolicyagent
+    restart: unless-stopped
+    ports:
+      - "8181:8181"
+    expose:
+      - 8181
+    command: run --server -w --log-level debug /opa_policies # 'data.dnb.greeting'
+    volumes:
+      - ./opa_policies:/opa_policies
+    networks:
+      - contactnetwork
+
 
 networks:
   contactnetwork:
