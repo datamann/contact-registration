@@ -6,16 +6,14 @@ Demo project for Policy-based Access Control. Created in Java Spring Boot with a
 The Contact Registration feature has no practical use, this project is created to demonstrate the difference between "IN APP" (Currently not implemented) authorizations and "EXTERNAL" or policy-based authorizations.
 
 ## Uses cases this project tries to demonstrate:
-* Use case 1:
+* Use case #1:
 * Company needs to be able to lower it's risk by dynamically changing employees permissions to only allow access to IT-systems when on the roster list.
-*
-* Use case 2:
-* Company needs to be able to lower it's risk by dynamically changing employees permissions with e.g. full access at the office and "read-only" access from home.
-*
-* Use case 3:
-* Company needs to be able to lower it's risk by dynamically changing employees permissions if an employee is on sick leave or other approved leave of absence, this should be based on HR data.
-* 
 
+* Use case #2:
+* Company needs to be able to lower it's risk by dynamically changing employees permissions with e.g. full access at the office and "read-only" access from home.
+
+* Use case #3:
+* Company needs to be able to lower it's risk by dynamically changing employees permissions if an employee is on sick leave or other approved leave of absence, this should be based on HR data.
 
 ## Getting Started
 
