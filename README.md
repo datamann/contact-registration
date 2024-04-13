@@ -31,7 +31,7 @@ The Contact Registration feature has no practical use, this project is created t
 * Look in file docker-compose.yml for Docker services and ports!
 * To prevent conflict with "localhost" names and services, you might want to edit your localhost file and give e.g. keycloak a hostname e.g. "127.0.0.1 mykeycloak".
 * After starting docker containers the first time, log into keycloak "http://mykeycloak:8080/admin/master/console/"
-* You don't have to but I recommend that you create a new Keycloak realm.
+* You don't have to but I recommend that you create a new Keycloak realm. Learn more here [Keycloak Create a realm](https://www.keycloak.org/docs/latest/server_admin/#proc-creating-a-realm_server_administration_guide)
 * In the new realm, start by creating a Keycloak client. You will need to change clientID and clientSecret in the Spring Boot application properties file.
 *
 * Before you can test how authorization with roles or user attributes work, you need to create Keycloak users, realm roles and user attributes.
