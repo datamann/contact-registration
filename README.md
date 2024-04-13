@@ -59,41 +59,41 @@ The Contact Registration feature has no practical use, this project is created t
 ### Executing program
 
 * From a terminal, in the projects folder, run:
-```
+  ```
     docker-compose up -d
-```
+  ```
 * Run Spring Boot app from e.g. VSCode
 
 ### TIPS
 * To add data to the database you can use the file "100-contacts.csv" found in the resource-files folder:
 * Copy file into container:
 * To get the database container id, run:
-```
+  ```
     docker ps
-```
+  ```
 * Replace "container id" (remove the angle brackets!) with the container ID found above
-```
+  ```
     docker cp resource-files/100-contacts.csv <container id>:/home/contacts.csv
-```
+  ```
 
 * Log into PGAdmin4, add a connection to the database and run this SQL command:
-```
+  ```
     COPY contact(firstname, lastname, companyname, address, city, county, state, zip, phonenumber, phonenumber2, email)
     FROM '/home/contacts.csv'
     DELIMITER ','
     CSV HEADER;
-```
+  ```
 
 
 * Troubleshooting OPA
 * To query OPA:
-```
+  ```
   curl -X POST http://localhost:8181/v1/data/dnb/userregistration/auth -d @./data.json -H 'Content-Type: application/json'
-```
+  ```
 * To look at OPA document structure:
-```
+  ```
   ./opa run ../OPA/input.json
-```
+  ```
 * [See Open Policy Documentation](https://www.openpolicyagent.org/docs/latest/#3-try-opa-run-interactive)
 
 ### Useful tools:
