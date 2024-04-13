@@ -11,6 +11,7 @@ import ContactModel from "Frontend/generated/no/sivertsensoftware/contactregistr
 import Contact from "../generated/no/sivertsensoftware/contactregistration/model/Contact";
 import { ContactController } from "Frontend/generated/endpoints";
 import AddContact from "../components/AddContact";
+import '../components/style.css'
 
 
 export default function MainView() {
@@ -58,7 +59,7 @@ export default function MainView() {
 
   return (
     <>
-     <AddContact trigger={buttonAddContact} setTrigger={setButtonAddContact}>
+    <AddContact trigger={buttonAddContact} setTrigger={setButtonAddContact}>
       <AutoForm 
           service={ContactFormService} 
           model={ContactModel}
@@ -66,39 +67,38 @@ export default function MainView() {
           onSubmitSuccess={handleSubmitSuccess} 
       />
     </AddContact>
-    <div className="p-m h-full box-border content-center">
-      <AutoGrid
-        service={ContactService}
-        ref={autoGridRef}
-        model={ContactModel} className="h-full"
-        visibleColumns={['actions','edit','firstname','lastname','email','phonenumber','phonenumber2','companyname','address','city','county','state','zip','country']}
-        customColumns={[  
-          <GridColumn header="Actions" key="actions" autoWidth className="background" property="actions"
-            renderer={({ item: Contact }) => (<Button theme="primary" disabled={!isadmin} onClick={(item) => { deleteSelectedContact(Contact.id, Contact); }}>Delete</Button>)}>
-          </GridColumn>,
+    <AutoGrid
+      service={ContactService}
+      model={ContactModel}
+      ref={autoGridRef}
+      className="h-full"
+      visibleColumns={['actions','edit','firstname','lastname','email','phonenumber','phonenumber2','companyname','address','city','county','state','zip','country']}
+      customColumns={[
 
-          <GridColumn header="Edit" key="edit" autoWidth className="background" property="edit"
-            renderer={({ item: Contact }) => (
-              <Button theme="primary" 
-                disabled={!isadmin} 
-                onClick={(item) => {
-                  setEditedItem(Contact)
-                  setButtonAddContact(true)
-                }}>Edit
-              </Button>
-            )}>
-          </GridColumn>,
-        ]}
-        />
+        <GridColumn header="Actions" key="actions" autoWidth className="background" property="actions"
+          renderer={({ item: Contact }) => (<Button theme="primary" disabled={!isadmin} onClick={(item) => { deleteSelectedContact(Contact.id, Contact); }}>Delete</Button>)}>
+        </GridColumn>,
+
+        <GridColumn header="Edit" key="edit" autoWidth className="background" property="edit"
+          renderer={({ item: Contact }) => (
+            <Button theme="primary" 
+              disabled={!isadmin} 
+              onClick={(item) => {
+                setEditedItem(Contact)
+                setButtonAddContact(true)
+              }}>Edit
+            </Button>
+          )}>
+        </GridColumn>,
+      ]}
+      />
       <Button id="btnAddContact" disabled={!isadmin} theme="primary" onClick={() => {
-          setEditedItem(null)
-          setButtonAddContact(true)
-        }
-      }>
+        setEditedItem(null)
+        setButtonAddContact(true)
+      }}>
       <Tooltip slot="tooltip" text="Add contact!"/>
         Add Contact
       </Button>
-    </div>
     </>
   );
 }
