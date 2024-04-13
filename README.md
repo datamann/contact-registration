@@ -37,24 +37,24 @@ The Contact Registration feature has no practical use, this project is created t
 * Before you can test how authorization with roles or user attributes work, you need to create Keycloak users, realm roles and user attributes.
 * First make sure that you have selected the right realm in Keycloak.
 
-* To make user roles available in the users token:
-* Goto (In keycloak):Clients -> "client id" (Newly created client from the step above) -> Click Tab "Client scopes" -> Click on "<client id>-dedicated" -> Click "Add Mapper" -> From predefined mappers -> Select "realm roles", Click "ADD" -> Then click "realm roles" -> In "Token claim name" add: "realm_access\.roles" -> Disable "Add to ID token", Enable "Add to access token" and "Add to userinfo".
+  - To make user roles available in the users token:
+      - Goto (In keycloak):Clients -> "client id" (Newly created client from the step above) -> Click Tab "Client scopes" -> Click on "<client id>-dedicated" -> Click "Add Mapper" -> From predefined mappers -> Select "realm roles", Click "ADD" -> Then click "realm roles" -> In "Token claim name" add: "realm_access\.roles" -> Disable "Add to ID token", Enable "Add to access token" and "Add to userinfo".
 
-* To make user attributes available in the users token:
-* Goto (In keycloak): Clients -> "client id" (Newly created client from the step above) -> Click Tab "Client scopes" -> Click on "-dedicated" -> Click "Add Mapper" -> By Configuratioon -> Select "User Attribute", Click "ADD" -> Then click "User Attribute" -> In "Token claim name" add: "authorizations" -> Disable "Add to ID token", Enable "Add to access token" and "Add to userinfo" and "Multivalued" and click Save.
+  - To make user attributes available in the users token:
+      - Goto (In keycloak): Clients -> "client id" (Newly created client from the step above) -> Click Tab "Client scopes" -> Click on "-dedicated" -> Click "Add Mapper" -> By Configuratioon -> Select "User Attribute", Click "ADD" -> Then click "User Attribute" -> In "Token claim name" add: "authorizations" -> Disable "Add to ID token", Enable "Add to access token" and "Add to userinfo" and "Multivalued" and click Save.
 
-* To add users:
-* Goto (In keycloak): In the menu on the lefthand side, click Users -> "Add user", provide a username (only "Username" is mandatory) and click "Create". Then click the "Credentials" tab, click "Set password" and provide a password, and uncheck "Temporary", then click "Save" -> "Save passord".
-* Learn more here: [Keycloak managing users](https://www.keycloak.org/docs/latest/server_admin/#assembly-managing-users_server_administration_guide)
+  - To add users:
+      - Goto (In keycloak): In the menu on the lefthand side, click Users -> "Add user", provide a username (only "Username" is mandatory) and click "Create". Then click the "Credentials" tab, click "Set password" and provide a password, and uncheck "Temporary", then click "Save" -> "Save passord".
+      Learn more here: [Keycloak managing users](https://www.keycloak.org/docs/latest/server_admin/#assembly-managing-users_server_administration_guide)
 
 * Now you need to create roles and attributes.
-* Create roles:
-* Goto (In keycloak): In the menu on the lefthand side, click "Realm roles" -> "Create role" -> enter "Role name", click "Save".
-* Learn more here: [Keycloak Assigning permissions using roles and groups](https://www.keycloak.org/docs/latest/server_admin/index.html#assigning-permissions-using-roles-and-groups)
+  - Create roles:
+      - Goto (In keycloak): In the menu on the lefthand side, click "Realm roles" -> "Create role" -> enter "Role name", click "Save".
+      Learn more here: [Keycloak Assigning permissions using roles and groups](https://www.keycloak.org/docs/latest/server_admin/index.html#assigning-permissions-using-roles-and-groups)
 
-* Add user attributes:
-* Goto (In keycloak): In the menu on the lefthand side, click Users -> click the user you created in previous step, click "Attributes" tab and click "Add an attribute". Enter attribute name in the "Key" field and enter attribute value in the "Value" field, then click "Save".
-* Learn more here: [Keycloak managing user attributes](https://www.keycloak.org/docs/latest/server_admin/#user-profile)
+  - Add user attributes:
+      - Goto (In keycloak): In the menu on the lefthand side, click Users -> click the user you created in previous step, click "Attributes" tab and click "Add an attribute". Enter attribute name in the "Key" field and enter attribute value in the "Value" field, then click "Save".
+      Learn more here: [Keycloak managing user attributes](https://www.keycloak.org/docs/latest/server_admin/#user-profile)
 
 ### Executing program
 
