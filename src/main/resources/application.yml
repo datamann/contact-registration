@@ -11,12 +11,12 @@ app:
 logging:
   level:
     root: INFO
-    web: DEBUG
+    web: INFO
     org:
       hibernate: INFO
       springframework:
-        security: TRACE
-        web: DEBUG
+        security: INFO
+        web: INFO
         data: INFO
         jdbc:
           core:
