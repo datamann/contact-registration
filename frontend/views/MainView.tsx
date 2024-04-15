@@ -11,6 +11,7 @@ import ContactModel from "Frontend/generated/no/sivertsensoftware/contactregistr
 import Contact from "../generated/no/sivertsensoftware/contactregistration/model/Contact";
 import { ContactController } from "Frontend/generated/endpoints";
 import AddContact from "../components/AddContact";
+import '../components/style.css'
 
 
 export default function MainView() {
