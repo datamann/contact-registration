@@ -4,15 +4,19 @@ server:
   servlet:
     session:
       timeout: 20
+app:
+  opa:
+    authz:
+      url: http://opa:8181/v1/data/
 logging:
   level:
     root: INFO
-    web: DEBUG
+    web: INFO
     org:
       hibernate: INFO
       springframework:
-        security: TRACE
-        web: DEBUG
+        security: INFO
+        web: INFO
         data: INFO
         jdbc:
           core:
